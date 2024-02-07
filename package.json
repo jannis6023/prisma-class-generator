@@ -1,7 +1,7 @@
 {
-	"name": "prisma-class-generator",
+	"name": "@jannis6023/prisma-class-generator",
 	"version": "0.2.9",
-	"description": "Class generator from Prisma schema",
+	"description": "One2One-Relation-fixed Class generator from Prisma schema",
 	"main": "dist/index.js",
 	"license": "MIT",
 	"keywords": [
