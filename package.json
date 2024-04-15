@@ -1,6 +1,6 @@
 {
 	"name": "@jannis6023/prisma-class-generator",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "One2One-Relation-fixed Class generator from Prisma schema",
 	"main": "dist/index.js",
 	"license": "MIT",
@@ -10,10 +10,10 @@
 		"typescript",
 		"generator"
 	],
-	"homepage": "https://github.com/kimjbstar/prisma-class-generator",
+	"homepage": "https://github.com/jannis6023/prisma-class-generator",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/kimjbstar/prisma-class-generator.git"
+		"url": "git://github.com/jannis6023/prisma-class-generator.git"
 	},
 	"scripts": {
 		"format": "prettier --write \"src/**/*.ts\"",
