@@ -337,7 +337,12 @@ export class PrismaConvertor {
 
 		const type = dmmfField.type;
 
-		if(!dmmfField.isRequired){
+		if(dmmfField.isRequired){
+			decorators.push(new DecoratorComponent({
+				name: 'IsDefined',
+				importFrom: 'class-validator',
+			}));
+		}else{
 			decorators.push(new DecoratorComponent({
 				name: 'IsOptional',
 				importFrom: 'class-validator',
