@@ -240,7 +240,7 @@ export class PrismaConvertor {
 				}
 				return true
 			})
-			.map((field) => this.convertField(field))
+			.map((field) => this.convertField(field, extractRelationFields))
 		classComponent.relationTypes =
 			extractRelationFields === false ? [] : relationTypes
 
@@ -347,6 +347,16 @@ export class PrismaConvertor {
 				name: 'IsOptional',
 				importFrom: 'class-validator',
 			}));
+		}
+
+		if(dmmfField.relationName){
+			// is relation => ValidateNested
+			decorators.push(new DecoratorComponent({
+				name: 'ValidateNested',
+				importFrom: 'class-validator',
+			}))
+
+			return decorators;
 		}
 
 		if (documentation.length > 0) {
@@ -553,6 +563,13 @@ export class PrismaConvertor {
 				}))
 			}
 
+			if(type === 'Json'){
+				decorators.push(new DecoratorComponent({
+					name: 'IsObject',
+					importFrom: 'class-validator',
+				}))
+			}
+
 			if(type === 'Int'){
 				decorators.push(new DecoratorComponent({
 					name: 'IsInt',
@@ -585,7 +602,7 @@ export class PrismaConvertor {
 		return decorators;
 	}
 
-	convertField = (dmmfField: DMMF.Field): FieldComponent => {
+	convertField = (dmmfField: DMMF.Field, relationField: boolean): FieldComponent => {
 		const field = new FieldComponent({
 			name: dmmfField.name,
 			useUndefinedDefault: this._config.useUndefinedDefault,

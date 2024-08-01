@@ -17,7 +17,6 @@ generator prismaClassGenerator {
 }
 
 model Product {
-  /// isInt min:10 max:20
   id            Int      @id
   title         String   @db.VarChar(255)
   desc          String   @default("abc") @db.VarChar(1024)
@@ -25,7 +24,17 @@ model Product {
   isShown       Boolean? @default(false)
   stock         Int?     @default(0)
   averageRating Float?
-  categoryId    Int
   createdAt     DateTime @default(now()) @db.Timestamp(6)
   updatedAt     DateTime @updatedAt @db.Timestamp(6)
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
+  id        Int       @id
+  name      String    @db.VarChar(255)
+  products  Product[]
+  createdAt DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt DateTime  @updatedAt @db.Timestamp(6)
 }
