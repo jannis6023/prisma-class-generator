@@ -16,8 +16,16 @@ generator prismaClassGenerator {
   useClassValidator      = "true"
 }
 
+enum TestEnum {
+  alfa
+  bravo
+  charlie
+  delta
+}
+
 model Product {
   id            Int      @id
+  letterName    TestEnum
   title         String   @db.VarChar(255)
   desc          String   @default("abc") @db.VarChar(1024)
   images        Json     @db.Json

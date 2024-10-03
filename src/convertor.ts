@@ -359,6 +359,14 @@ export class PrismaConvertor {
 			return decorators;
 		}
 
+		if(dmmfField.kind === 'enum'){
+			decorators.push(new DecoratorComponent({
+				name: 'IsEnum',
+				importFrom: 'class-validator',
+				params: [dmmfField.type],
+			}))
+		}
+
 		if (documentation.length > 0) {
 			if(documentation.includes('isEmail')){
 				decorators.push(new DecoratorComponent({
@@ -593,7 +601,7 @@ export class PrismaConvertor {
 
 			if(type === 'DateTime'){
 				decorators.push(new DecoratorComponent({
-					name: 'IsDate',
+					name: 'IsDateString',
 					importFrom: 'class-validator',
 				}))
 			}
