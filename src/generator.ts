@@ -57,6 +57,10 @@ export const PrismaClassGeneratorOptions = {
 		desc: 'use class validator',
 		defaultValue: false
 	},
+	useClassTransformerExpose: {
+		desc: 'annotate all properties with @Expose',
+		defaultValue: false
+	},
 	usePrismaJsonValue: {
 		desc: 'use Prisma JsonValue type instead of object for Json fields',
 		defaultValue: false,

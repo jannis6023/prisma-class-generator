@@ -641,6 +641,17 @@ export class PrismaConvertor {
 		return decorators;
 	}
 
+	extractClassTransformerDecoratorsFromField = (dmmfField: DMMF.Field) => {
+		const decorators  = [];
+
+		decorators.push(new DecoratorComponent({
+			name: 'Expose',
+			importFrom: 'class-transformer',
+		}))
+
+		return decorators;
+	}
+
 	convertField = (dmmfField: DMMF.Field, relationField: boolean): FieldComponent => {
 		const field = new FieldComponent({
 			name: dmmfField.name,
@@ -655,6 +666,11 @@ export class PrismaConvertor {
 
 		if(this.config.useClassValidator){
 			const decorators = this.extractClassValidatorDecoratorsFromField(dmmfField);
+			field.decorators.push(...decorators)
+		}
+
+		if (this.config.useClassTransformerExpose) {
+			const decorators = this.extractClassTransformerDecoratorsFromField(dmmfField);
 			field.decorators.push(...decorators)
 		}
 
