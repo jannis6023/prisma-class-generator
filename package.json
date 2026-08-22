@@ -40,7 +40,7 @@
 		"prettier": "2.5.1"
 	},
 	"devDependencies": {
-		"@nestjs/swagger": "^7.3.1",
+		"@nestjs/swagger": "^11.4.7",
 		"@types/jest": "^28.1.4",
 		"@types/node": "^24.10.2",
 		"@types/prettier": "^2.6.3",
